@@ -1,0 +1,383 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700;800;900&display=swap');
+
+.auth-page {
+  --primary-accent: #6366f1; // Indigo from landing
+  --bg-deep: #111110;
+  --bg-surface: #1a1a19;
+  --text-main: #ffffff;
+  --text-muted: #888880;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  background-color: var(--bg-deep);
+  color: var(--text-main);
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+
+  // Background Decorations
+  .auth-bg-decor {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    .auth-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.15;
+
+      &--1 {
+        top: -10%;
+        left: -10%;
+        width: 40%;
+        height: 40%;
+        background: radial-gradient(circle, var(--primary-accent), transparent);
+      }
+
+      &--2 {
+        bottom: -10%;
+        right: -10%;
+        width: 40%;
+        height: 40%;
+        background: radial-gradient(circle, #ff4d00, transparent);
+      }
+    }
+  }
+
+  // Side Panels
+  .auth-side-brand {
+    display: none;
+    flex: 1;
+    position: relative;
+    background-color: #080807;
+    border-right: 1px solid var(--border-subtle);
+    padding: 4rem;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 10;
+
+    @media (min-width: 1024px) {
+      display: flex;
+    }
+
+    .auth-logo {
+      display: flex;
+      items-center: center;
+      gap: 0.75rem;
+      text-decoration: none;
+
+      .logo-mark {
+        width: 2.5rem;
+        height: 2.5rem;
+        background-color: var(--primary-accent);
+        color: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        border-radius: 0.5rem;
+        transform: rotate(3deg);
+      }
+
+      .logo-text {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 1.5rem;
+        color: var(--text-main);
+        letter-spacing: -0.02em;
+      }
+    }
+
+    .auth-side-content {
+      .auth-side-heading {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 5rem;
+        line-height: 0.9;
+        margin-bottom: 1.5rem;
+        
+        &--accent {
+          color: var(--primary-accent);
+          font-style: italic;
+        }
+      }
+
+      .auth-side-sub {
+        color: var(--text-muted);
+        font-size: 1.125rem;
+        max-width: 28rem;
+        font-weight: 500;
+        line-height: 1.6;
+      }
+    }
+
+    .auth-side-footer {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+
+      .avatars-group {
+        display: flex;
+        margin-left: 0.75rem;
+
+        .avatar-circle {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: 50%;
+          border: 2px solid #080807;
+          background-size: cover;
+          margin-left: -0.75rem;
+        }
+      }
+
+      .auth-side-stats {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: #555;
+
+        .highlight {
+          color: var(--text-main);
+        }
+      }
+    }
+  }
+
+  .auth-side-form {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    z-index: 10;
+
+    .auth-form-container {
+      width: 100%;
+      max-width: 28rem;
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+
+        @media (min-width: 1024px) {
+          text-align: left;
+        }
+
+        .auth-title {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 2.5rem;
+          letter-spacing: -0.01em;
+          line-height: 1;
+          font-style: italic;
+        }
+
+        .auth-eyebrow {
+          font-family: 'Bebas Neue', sans-serif;
+          font-size: 0.625rem;
+          letter-spacing: 0.3em;
+          color: var(--text-muted);
+          margin-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  // Form Elements
+  .auth-social-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      background-color: #151514;
+      border: 1px solid var(--border-subtle);
+      padding: 1rem;
+      border-radius: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background-color: #1a1a19;
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .social-icon {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.875rem;
+      }
+
+      .social-label {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+      }
+    }
+  }
+
+  .auth-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--border-subtle);
+    }
+
+    .divider-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 0.625rem;
+      letter-spacing: 0.2em;
+      color: #444;
+    }
+  }
+
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+
+      .form-label-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .form-label {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        padding-left: 0.25rem;
+      }
+
+      .form-link {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: 0.75rem;
+        color: var(--primary-accent);
+        text-decoration: none;
+        letter-spacing: 0.05em;
+
+        &:hover {
+          color: white;
+        }
+      }
+
+      .form-input-wrap {
+        position: relative;
+
+        .input-icon {
+          position: absolute;
+          left: 1.25rem;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #444;
+        }
+
+        .form-input {
+          width: 100%;
+          background-color: #151514;
+          border: 1px solid var(--border-subtle);
+          padding: 1.125rem 1.25rem 1.125rem 3.5rem;
+          border-radius: 1rem;
+          color: white;
+          font-size: 0.875rem;
+          font-weight: 600;
+          outline: none;
+          transition: all 0.2s;
+
+          &::placeholder {
+            color: #333;
+          }
+
+          &:focus {
+            border-color: rgba(245, 197, 24, 0.3);
+            background-color: rgba(245, 197, 24, 0.02);
+          }
+        }
+      }
+    }
+  }
+
+  .auth-submit-btn {
+    margin-top: 1rem;
+    width: 100%;
+    background-color: var(--primary-accent);
+    color: #000;
+    padding: 1.25rem;
+    border-radius: 1rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.2s;
+    box-shadow: 0 10px 30px rgba(245, 197, 24, 0.2);
+
+    &:hover {
+      background-color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(245, 197, 24, 0.3);
+      
+      .btn-icon {
+        transform: translateX(3px);
+      }
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    &:disabled {
+      background-color: #222;
+      color: #444;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-icon {
+      transition: transform 0.2s;
+    }
+  }
+
+  .auth-footer {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: #444;
+
+    .auth-footer-link {
+      color: var(--primary-accent);
+      text-decoration: none;
+      margin-left: 0.5rem;
+      border-bottom: 1px solid rgba(245, 197, 24, 0.2);
+      padding-bottom: 2px;
+
+      &:hover {
+        color: white;
+        border-color: white;
+      }
+    }
+  }
+}

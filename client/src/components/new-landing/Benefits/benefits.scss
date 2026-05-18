@@ -1,0 +1,612 @@
+// ─── Variables ────────────────────────────────────────────────────────────────
+$bg:          #111110;
+$bg-card:     #1c1c1a;
+$bg-card-2:   #222220;
+$bg-card-3:   #161614;
+$yellow:      #f5c518;
+$yellow-dim:  #c9a012;
+$yellow-mute: rgba(245, 197, 24, 0.10);
+$white:       #ffffff;
+$gray:        #666660;
+$gray-light:  #aaaaaa;
+$green:       #22c55e;
+$green-mute:  rgba(34, 197, 94, 0.14);
+$red:         #ef4444;
+$border:      rgba(255, 255, 255, 0.07);
+$border-hi:   rgba(255, 255, 255, 0.12);
+
+// Redundant @import removed to fix PostCSS error
+
+// ─── Section ──────────────────────────────────────────────────────────────────
+.benefits {
+  background: $bg;
+  font-family: 'DM Sans', sans-serif;
+  color: $white;
+  padding: 0 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+// ─── Shared fade-up ───────────────────────────────────────────────────────────
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes growBar {
+  from { height: 0; }
+  to   { height: var(--bar-height); }
+}
+@keyframes drawLine {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes fillFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.6; transform: scale(1.3); }
+}
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+// ─── Infrastructure Block ─────────────────────────────────────────────────────
+.benefits__infra {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 1px;
+  background: $border;
+  border: 1px solid $border;
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 12px 32px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+
+    .infra__bullets li {
+      animation: fadeUp 0.5s ease both;
+    }
+  }
+}
+
+.infra__text {
+  background: $bg-card;
+  padding: 44px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.infra__badge {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: $gray;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+
+  &--green { background: $green; box-shadow: 0 0 8px $green; }
+  &--yellow{ background: $yellow; box-shadow: 0 0 8px $yellow; }
+}
+
+.infra__heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 1.05;
+  color: $white;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+
+  &--accent { color: $green; }
+}
+
+.infra__body {
+  font-size: 13px;
+  line-height: 1.75;
+  color: $gray-light;
+  margin-bottom: 22px;
+}
+
+.infra__bullets {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 12.5px;
+    color: $gray-light;
+    line-height: 1.5;
+    opacity: 0;
+  }
+}
+
+.bullet-check {
+  color: $green;
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.infra__cta {
+  align-self: flex-start;
+  background: $green-mute;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: $green;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  transition: background 0.2s, transform 0.15s;
+
+  &:hover {
+    background: $green;
+    color: $bg;
+    border-color: $green;
+    transform: scale(1.02);
+  }
+}
+
+// ── Chart window ───────────────────────────────────────────────────────────────
+.infra__visual {
+  background: $bg-card-3;
+  padding: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.chart-window {
+  width: 100%;
+  background: #141412;
+  border-radius: 12px;
+  border: 1px solid $border;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+.chart-titlebar {
+  background: #0e0e0c;
+  padding: 9px 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  border-bottom: 1px solid $border;
+
+  .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    &.red    { background: #ff5f57; }
+    &.yellow { background: #febc2e; }
+    &.green  { background: #28c840; }
+  }
+}
+
+.chart-title {
+  font-size: 10px;
+  color: $gray-light;
+  flex: 1;
+  margin-left: 8px;
+}
+
+.chart-badge {
+  font-size: 9px;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 2px 7px;
+
+  &--up { background: $green-mute; color: $green; }
+}
+
+.chart-body { padding: 18px 18px 14px; }
+
+// SVG area chart
+.chart-area {
+  position: relative;
+  height: 80px;
+  margin-bottom: 14px;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.chart-line {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+
+  &--animate { animation: drawLine 1.4s ease forwards 0.3s; }
+}
+
+.chart-fill {
+  opacity: 0;
+  &--animate { animation: fillFade 1s ease forwards 0.8s; }
+}
+
+.spike-dot {
+  animation: pulse 1.5s ease-in-out infinite 1.5s;
+}
+
+.spike-tooltip {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  font-size: 9px;
+  background: rgba(239,68,68,0.15);
+  border: 1px solid rgba(239,68,68,0.4);
+  color: $red;
+  border-radius: 5px;
+  padding: 3px 8px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+// Bar chart
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 72px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.bar-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+
+.bar-fill {
+  width: 100%;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(to top, $yellow-dim, $yellow);
+  height: 0;
+  transition: height 0.6s ease;
+
+  &--animate {
+    animation: growBar 0.7s ease both;
+  }
+}
+
+.bar-label {
+  position: absolute;
+  bottom: -18px;
+  font-size: 8px;
+  color: $gray;
+  text-align: center;
+}
+
+.chart-stats {
+  display: flex;
+  gap: 0;
+}
+
+.chart-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0 10px 0 0;
+
+  &__val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    color: $white;
+    letter-spacing: 0.02em;
+
+    &--green { color: $green; }
+    &--red   { color: $red; }
+  }
+
+  &__label { font-size: 9px; color: $gray; }
+}
+
+// ─── Synergy Table ────────────────────────────────────────────────────────────
+.benefits__synergy {
+  padding: 80px 32px 72px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+
+    .table-row {
+      animation: fadeUp 0.45s ease both;
+    }
+  }
+}
+
+.synergy__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.synergy__eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: $yellow;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.synergy__title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(40px, 5vw, 68px);
+  color: $white;
+  letter-spacing: 0.01em;
+  margin-bottom: 14px;
+}
+
+.synergy__sub {
+  font-size: 13.5px;
+  color: $gray-light;
+  max-width: 500px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.synergy__table-wrap {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid $border;
+  background: $bg-card;
+}
+
+.synergy__table {
+  width: 100%;
+  border-collapse: collapse;
+
+  thead tr {
+    background: $bg-card-3;
+    border-bottom: 1px solid $border-hi;
+  }
+
+  th {
+    padding: 14px 20px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: $gray;
+    text-align: center;
+
+    &.col-feature {
+      text-align: left;
+      width: 40%;
+      color: $gray;
+    }
+  }
+}
+
+.col-us {
+  position: relative;
+  background: $yellow-mute !important;
+  border-left: 1px solid rgba(245, 197, 24, 0.2);
+  border-right: 1px solid rgba(245, 197, 24, 0.2);
+
+  &__label { color: $yellow !important; display: block; }
+  &__crown { font-size: 14px; display: block; margin-top: 2px; }
+}
+
+.col-other { color: $gray !important; }
+
+.table-row {
+  border-bottom: 1px solid $border;
+  opacity: 0;
+  transition: background 0.15s;
+
+  &:last-child { border-bottom: none; }
+  &:hover { background: rgba(255,255,255,0.02); }
+}
+
+.td-feature {
+  padding: 14px 20px;
+  font-size: 12.5px;
+  color: $gray-light;
+  text-align: left;
+}
+
+.td-us {
+  padding: 14px 20px;
+  text-align: center;
+  background: $yellow-mute;
+  border-left: 1px solid rgba(245, 197, 24, 0.12);
+  border-right: 1px solid rgba(245, 197, 24, 0.12);
+}
+
+.td-other {
+  padding: 14px 20px;
+  text-align: center;
+}
+
+.check {
+  font-size: 14px;
+  font-weight: 700;
+
+  &--us    { color: $yellow; text-shadow: 0 0 8px $yellow; }
+  &--other { color: $gray; font-size: 12px; }
+}
+
+.dash { color: #333; font-size: 14px; }
+
+// ─── CTA Banner ───────────────────────────────────────────────────────────────
+.benefits__cta-banner {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #141412;
+  border: 1px solid $border-hi;
+  margin: 32px 32px 80px;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Decorative dot grid
+.cta-grid-bg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(16, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 0;
+  pointer-events: none;
+  opacity: 0.12;
+}
+
+.cta-grid-cell {
+  border-right: 1px solid rgba(255,255,255,0.15);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+// Orbs
+.cta-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+
+  &--1 {
+    width: 300px; height: 300px;
+    background: $yellow;
+    opacity: 0.07;
+    top: -80px; left: -60px;
+  }
+  &--2 {
+    width: 250px; height: 250px;
+    background: $green;
+    opacity: 0.06;
+    bottom: -60px; right: -40px;
+  }
+}
+
+.cta-banner__inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 72px 48px 80px;
+  gap: 0;
+}
+
+.cta-banner__icon {
+  width: 44px; height: 44px;
+  background: $yellow;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  color: $bg;
+  margin-bottom: 28px;
+  box-shadow: 0 0 30px rgba(245, 197, 24, 0.3);
+}
+
+.cta-banner__heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.08;
+  color: $white;
+  margin-bottom: 16px;
+  letter-spacing: 0.01em;
+
+  &--accent {
+    color: $yellow;
+    // shimmer effect
+    background: linear-gradient(90deg, $yellow-dim, $yellow, #ffe066, $yellow-dim);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+}
+
+.cta-banner__sub {
+  font-size: 14px;
+  color: $gray-light;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.cta-banner__actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-banner__btn {
+  border-radius: 999px;
+  padding: 13px 30px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: 0.02em;
+  transition: transform 0.15s, background 0.2s, border-color 0.2s;
+
+  &--primary {
+    background: $yellow;
+    border: 1.5px solid $yellow;
+    color: $bg;
+    &:hover { background: $yellow-dim; transform: scale(1.03); }
+  }
+
+  &--ghost {
+    background: transparent;
+    border: 1.5px solid $border-hi;
+    color: $white;
+    &:hover { border-color: $yellow; color: $yellow; }
+  }
+}
+
+// ─── Responsive ───────────────────────────────────────────────────────────────
+@media (max-width: 860px) {
+  .benefits__infra { grid-template-columns: 1fr; margin-left: 16px; margin-right: 16px; }
+  .infra__text     { padding: 32px 20px; }
+  .infra__visual   { padding: 20px; }
+  .cta-banner__inner { padding: 48px 24px 56px; }
+  .synergy__table-wrap { margin: 0; }
+  .benefits__synergy { padding-left: 16px; padding-right: 16px; }
+  .benefits__cta-banner { margin-left: 16px; margin-right: 16px; }
+}

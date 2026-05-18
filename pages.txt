@@ -1,0 +1,14 @@
+﻿C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\(auth)\login\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\(auth)\signup\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\careers\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\leaderboard\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\notifications\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\portfolio\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\practice\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\projects\[id]\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\projects\[id]\issues\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\projects\[id]\pulls\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\settings\page.tsx
+C:\Users\brije\OneDrive\Desktop\GenZ Club\genz-club\app\dashboard\teams\page.tsx

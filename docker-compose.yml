@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  colloabuilder-backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: colloabuilder-api
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGODB_URI=${MONGODB_URI}
+      - JWT_SECRET=${JWT_SECRET}
+      - GITHUB_CLIENT_ID=${GITHUB_CLIENT_ID}
+      - GITHUB_CLIENT_SECRET=${GITHUB_CLIENT_SECRET}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./workspaces:/app/workspaces
+    restart: always
+
+networks:
+  default:
+    name: colloabuilder-network
