@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.3'
 
 services:
   colloabuilder-backend:
@@ -18,7 +18,3 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./workspaces:/app/workspaces
     restart: always
-
-networks:
-  default:
-    name: colloabuilder-network

@@ -33,7 +33,7 @@ app.use("/api/lessons", lessonRoutes);
 app.use("/api/problems", problemRoutes);
 
 app.get("/", (req, res) => {
-  res.send("Colloabuilder API is running...");
+  res.send("Colloabuilder Backend Running 🚀");
 });
 
 // Missing API Stubs for Dashboard parity

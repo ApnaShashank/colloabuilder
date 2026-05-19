@@ -16,8 +16,8 @@ RUN npm install
 # Copy source code
 COPY . .
 
-# Build TypeScript
-RUN npm run build
+# Build TypeScript skipped for dynamic ts-node execution
+# RUN npm run build
 
 # Expose main port
 EXPOSE 5000
