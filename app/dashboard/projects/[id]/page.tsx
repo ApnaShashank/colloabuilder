@@ -73,6 +73,7 @@ export default function ProjectCodePage({ params }: { params: Promise<{ id: stri
   
   // Local changes state
   const [activeContent, setActiveContent] = useState("");
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [saving, setSaving] = useState(false);
   const [running, setRunning] = useState(false);
 
@@ -541,7 +542,7 @@ export default function ProjectCodePage({ params }: { params: Promise<{ id: stri
   return (
     <div className="flex h-screen w-full bg-[#1e1e1e] text-[#cccccc] font-sans overflow-hidden">
       {/* VS Code Left Activity Bar (Vertical strip) */}
-      <div className="w-12 bg-[#18181c] border-r border-[#333333] flex flex-col items-center py-4 justify-between flex-shrink-0">
+      <div className="hidden md:flex w-12 bg-[#18181c] border-r border-[#333333] flex-col items-center py-4 justify-between flex-shrink-0">
         <div className="flex flex-col items-center gap-5 w-full">
           {/* Explorer Tab Button */}
           <button 
@@ -575,7 +576,15 @@ export default function ProjectCodePage({ params }: { params: Promise<{ id: stri
       {activeTab === 'editor' ? (
         <>
           {/* VS Code Left Sidebar (Explorer) */}
-          <div className="w-64 border-r border-[#333333] flex flex-col flex-shrink-0 bg-[#1e1e1e]">
+          <div className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-[#333333] flex flex-col flex-shrink-0 bg-[#1e1e1e] transform transition-transform duration-300 md:relative md:translate-x-0 ${mobileSidebarOpen ? "translate-x-0 shadow-2xl" : "-translate-x-full"}`}>
+            {mobileSidebarOpen && (
+              <button 
+                onClick={() => setMobileSidebarOpen(false)}
+                className="md:hidden absolute top-3 right-3 text-neutral-400 hover:text-white"
+              >
+                <XCircle size={16} />
+              </button>
+            )}
             <div className="flex items-center justify-between px-4 py-3 border-b border-[#333333]">
               <span className="text-[11px] font-semibold tracking-wide uppercase text-[#cccccc]">Explorer</span>
               <div className="flex items-center gap-2">
@@ -616,18 +625,37 @@ export default function ProjectCodePage({ params }: { params: Promise<{ id: stri
               })}
             </div>
           </div>
+          
+          {/* Mobile Overlay */}
+          {mobileSidebarOpen && (
+            <div 
+              className="fixed inset-0 bg-black/50 z-40 md:hidden"
+              onClick={() => setMobileSidebarOpen(false)}
+            />
+          )}
 
           {/* Editor & Terminal Area */}
-          <div className="flex-1 flex flex-col min-w-0 bg-[#1e1e1e]">
+          <div className="flex-1 flex flex-col min-w-0 bg-[#1e1e1e] relative">
+            {/* Mobile Header for hamburger */}
+            <div className="md:hidden flex items-center px-3 py-2 bg-[#18181c] border-b border-[#333333] justify-between">
+              <button onClick={() => setMobileSidebarOpen(true)} className="text-neutral-400 hover:text-white p-1">
+                <Folder size={18} />
+              </button>
+              <div className="flex gap-2">
+                <button onClick={() => setActiveTab('editor')} className={`p-1.5 rounded ${activeTab === 'editor' ? 'bg-[#37373d] text-white' : 'text-[#858585]'}`}><FileCode size={16} /></button>
+                <button onClick={() => setActiveTab('deploy')} className={`p-1.5 rounded ${activeTab === 'deploy' ? 'bg-[#37373d] text-white' : 'text-[#858585]'}`}><Rocket size={16} /></button>
+              </div>
+            </div>
+
             {/* Editor Tabs Header */}
-            <div className="h-9 flex bg-[#252526]">
-              <div className="flex items-center bg-[#1e1e1e] border-r border-[#333333] px-4 border-t-2 border-t-[#007acc] min-w-[120px]">
+            <div className="h-10 sm:h-9 flex bg-[#252526] overflow-x-auto hide-scrollbar flex-shrink-0">
+              <div className="flex items-center bg-[#1e1e1e] border-r border-[#333333] px-3 sm:px-4 border-t-2 border-t-[#007acc] min-w-fit flex-shrink-0">
                 <FileCode size={14} className="text-[#519aba] mr-2" />
-                <span className="text-[13px] text-white">{activeFileKey || "App.tsx"}</span>
+                <span className="text-[12px] sm:text-[13px] text-white truncate max-w-[100px] sm:max-w-[150px]">{activeFileKey || "App.tsx"}</span>
                 {saving && <Loader2 size={12} className="animate-spin text-[#858585] ml-2" />}
               </div>
               {/* Action buttons on the right */}
-              <div className="flex-1 flex items-center justify-end px-4 gap-4 border-b border-[#333333]">
+              <div className="flex-1 flex items-center justify-end px-2 sm:px-4 gap-2 sm:gap-4 border-b border-[#333333] min-w-max">
                  <button onClick={() => handleSave()} disabled={saving} className="text-[11px] uppercase tracking-wider font-semibold text-[#cccccc] hover:text-white transition-colors flex items-center gap-1.5"><Save size={12}/> Save</button>
                  <button onClick={handleRunCode} disabled={running} className="text-[11px] uppercase tracking-wider font-semibold text-[#4CAF50] hover:text-[#81C784] transition-colors flex items-center gap-1.5">
                    {running ? <Loader2 size={12} className="animate-spin" /> : <Play size={12} />} Run
@@ -663,7 +691,7 @@ export default function ProjectCodePage({ params }: { params: Promise<{ id: stri
             </div>
 
             {/* Integrated Terminal (Bottom Panel) */}
-            <div className="h-56 border-t border-[#333333] bg-[#1e1e1e] flex flex-col">
+            <div className="h-40 sm:h-56 border-t border-[#333333] bg-[#1e1e1e] flex flex-col flex-shrink-0">
               <div className="flex items-center px-4 h-9 border-b border-[#333333] bg-[#252526]">
                 <span className="text-[11px] font-semibold tracking-wide uppercase text-[#cccccc]">Terminal</span>
               </div>
