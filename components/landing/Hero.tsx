@@ -20,6 +20,7 @@ import {
 import { HugeiconsIcon } from "@hugeicons/react";
 import { useUser } from "@/context/UserContext";
 import { useTheme } from "@/context/ThemeContext";
+import { Logo } from "@/components/ui/Logo";
 
 /* ─── Nav config ─────────────────────────────────────────────────────────── */
 const NAV_ITEMS = [
@@ -368,9 +369,7 @@ export default function Hero() {
           {/* Header Row (Logo + Mobile Controls) */}
           <div className="flex items-center justify-between w-full md:w-auto">
             <Link href="/" className="flex items-center gap-2 sm:gap-3 flex-shrink-0" onClick={() => setMobileMenuOpen(false)}>
-              <div className="w-8 h-8 bg-[#B54B00] rounded-lg flex items-center justify-center font-black text-white italic text-sm">
-                C
-              </div>
+              <Logo className="w-8 h-8 flex-shrink-0 drop-shadow-[0_0_15px_rgba(181,75,0,0.5)]" />
               <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-white italic">
                 Colloabuilder
               </span>
