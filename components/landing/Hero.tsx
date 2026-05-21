@@ -359,7 +359,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className={`flex flex-col md:flex-row md:items-center justify-between gap-x-4 px-6 py-3 rounded-2xl border transition-all duration-500 w-full max-w-5xl ${
+          className={`flex flex-col md:flex-row md:items-center justify-between gap-x-2 sm:gap-x-4 px-3 sm:px-6 py-3 rounded-2xl border transition-all duration-500 w-full max-w-5xl ${
             scrolled
               ? "bg-black/90 border-white/[0.08] backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.8)]"
               : "bg-white/[0.02] border-white/[0.04] backdrop-blur-md"
@@ -367,32 +367,17 @@ export default function Hero() {
         >
           {/* Header Row (Logo + Mobile Controls) */}
           <div className="flex items-center justify-between w-full md:w-auto">
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0" onClick={() => setMobileMenuOpen(false)}>
+            <Link href="/" className="flex items-center gap-2 sm:gap-3 flex-shrink-0" onClick={() => setMobileMenuOpen(false)}>
               <div className="w-8 h-8 bg-[#B54B00] rounded-lg flex items-center justify-center font-black text-white italic text-sm">
                 C
               </div>
-              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-white italic">
+              <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.2em] text-white italic">
                 Colloabuilder
               </span>
             </Link>
 
             {/* Mobile Controls */}
-            <div className="flex items-center gap-2 md:hidden">
-              {!user ? (
-                <Link
-                  href="/signup"
-                  className="px-3.5 py-1.5 bg-[#B54B00] text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 mr-1"
-                >
-                  Get Started
-                </Link>
-              ) : (
-                <Link
-                  href="/dashboard"
-                  className="px-3.5 py-1.5 bg-[#B54B00] text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 mr-1"
-                >
-                  Dashboard
-                </Link>
-              )}
+            <div className="flex items-center gap-1.5 sm:gap-2 md:hidden">
               {/* Theme Toggle Button for Mobile */}
               <motion.button
                 onClick={toggleTheme}
@@ -469,6 +454,22 @@ export default function Hero() {
                   )}
                 </AnimatePresence>
               </motion.button>
+
+              {!user ? (
+                <Link
+                  href="/signup"
+                  className="px-3 py-1.5 bg-[#B54B00] text-white rounded-[10px] text-[9px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 ml-0.5 flex-shrink-0 whitespace-nowrap"
+                >
+                  Get Started
+                </Link>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  className="px-3 py-1.5 bg-[#B54B00] text-white rounded-[10px] text-[9px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 ml-0.5 flex-shrink-0 whitespace-nowrap"
+                >
+                  Dashboard
+                </Link>
+              )}
             </div>
           </div>
 
