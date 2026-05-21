@@ -378,6 +378,21 @@ export default function Hero() {
 
             {/* Mobile Controls */}
             <div className="flex items-center gap-2 md:hidden">
+              {!user ? (
+                <Link
+                  href="/signup"
+                  className="px-3.5 py-1.5 bg-[#B54B00] text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 mr-1"
+                >
+                  Get Started
+                </Link>
+              ) : (
+                <Link
+                  href="/dashboard"
+                  className="px-3.5 py-1.5 bg-[#B54B00] text-white rounded-xl text-[10px] font-black uppercase tracking-wider hover:bg-[#9E4200] active:scale-95 transition-all shadow-md shadow-[#B54B00]/10 mr-1"
+                >
+                  Dashboard
+                </Link>
+              )}
               {/* Theme Toggle Button for Mobile */}
               <motion.button
                 onClick={toggleTheme}
@@ -658,7 +673,7 @@ export default function Hero() {
           </ul>
 
           {/* CTA */}
-          <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="hidden md:flex items-center gap-3 flex-shrink-0">
             {/* Theme Toggle Button */}
             <motion.button
               onClick={toggleTheme}
@@ -865,20 +880,20 @@ export default function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.0 }}
-          className="flex flex-col sm:flex-row items-center gap-3 mt-10"
+          className="flex flex-row items-center justify-center gap-2 sm:gap-3 mt-10 w-full max-w-[340px] sm:max-w-md px-4"
         >
           {!user ? (
             <>
               <Link
                 href="/signup"
-                className="group relative px-9 py-4 bg-[#B54B00] text-white rounded-2xl text-[12px] font-black uppercase tracking-widest overflow-hidden transition-all hover:scale-[1.03] active:scale-95 shadow-[0_8px_30px_rgba(181,75,0,0.35)]"
+                className="group relative flex-1 text-center py-3.5 sm:py-4 px-3 sm:px-9 bg-[#B54B00] text-white rounded-xl sm:rounded-2xl text-[11px] sm:text-[12px] font-black uppercase tracking-wider sm:tracking-widest overflow-hidden transition-all hover:scale-[1.03] active:scale-95 shadow-[0_8px_30px_rgba(181,75,0,0.35)]"
               >
-                <span className="relative z-10">Start Free →</span>
+                <span className="relative z-10 whitespace-nowrap">Start Free →</span>
                 <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
               <Link
                 href="/login"
-                className="px-9 py-4 border border-white/[0.08] text-neutral-400 rounded-2xl text-[12px] font-black uppercase tracking-widest hover:border-white/20 hover:text-white transition-all"
+                className="flex-1 text-center py-3.5 sm:py-4 px-3 sm:px-9 border border-white/[0.08] text-neutral-400 rounded-xl sm:rounded-2xl text-[11px] sm:text-[12px] font-black uppercase tracking-wider sm:tracking-widest hover:border-white/20 hover:text-white transition-all whitespace-nowrap"
               >
                 Sign In
               </Link>
@@ -886,7 +901,7 @@ export default function Hero() {
           ) : (
             <Link
               href="/dashboard"
-              className="px-9 py-4 bg-[#B54B00] text-white rounded-2xl text-[12px] font-black uppercase tracking-widest hover:scale-[1.03] transition-all shadow-[0_8px_30px_rgba(181,75,0,0.35)]"
+              className="w-full text-center py-3.5 sm:py-4 px-3 sm:px-9 bg-[#B54B00] text-white rounded-xl sm:rounded-2xl text-[11px] sm:text-[12px] font-black uppercase tracking-wider sm:tracking-widest hover:scale-[1.03] transition-all shadow-[0_8px_30px_rgba(181,75,0,0.35)]"
             >
               Resume Journey →
             </Link>
