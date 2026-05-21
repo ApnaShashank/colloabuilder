@@ -96,13 +96,20 @@ function useCounter(target: number, duration = 1800, started = false) {
 }
 
 /* ─── Stat tile ───────────────────────────────────────────────────────────── */
-function StatTile({ stat, started }: { stat: typeof STATS[0]; started: boolean }) {
+function StatTile({ stat, started, index }: { stat: typeof STATS[0]; started: boolean; index: number }) {
   const count = useCounter(stat.val, 1600, started);
+  const borderClass = [
+    "border-r border-b md:border-b-0 border-white/[0.06]", // index 0
+    "border-b md:border-r md:border-b-0 border-white/[0.06]", // index 1
+    "border-r md:border-r border-white/[0.06]", // index 2
+    "border-white/[0.06]", // index 3
+  ][index] || "";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="group flex flex-col gap-1 px-8 py-6 border-r border-white/[0.06] last:border-r-0"
+      className={`group flex flex-col gap-1 px-8 py-6 ${borderClass}`}
     >
       <span className="font-headline font-black text-3xl md:text-4xl text-white tabular-nums">
         {count.toLocaleString()}{stat.suffix}
@@ -820,16 +827,19 @@ export default function Hero() {
           variants={{ show: { transition: { staggerChildren: 0.03, delayChildren: 0.25 } } }}
         >
           {/* Line 1 */}
-          <div className="flex flex-wrap justify-center">
-            {"WHERE STUDENTS".split("").map((ch, i) => (
-              <motion.span
-                key={i}
-                variants={charVariant}
-                className="font-headline font-black text-[clamp(2.8rem,8vw,7rem)] leading-[0.9] tracking-tighter text-neutral-400 inline-block"
-                style={{ display: ch === " " ? "inline-block" : undefined, minWidth: ch === " " ? "0.3em" : undefined }}
-              >
-                {ch === " " ? "\u00A0" : ch}
-              </motion.span>
+          <div className="flex flex-wrap justify-center gap-x-[0.25em]">
+            {["WHERE", "STUDENTS"].map((word, wordIdx) => (
+              <span key={wordIdx} className="inline-block whitespace-nowrap">
+                {word.split("").map((ch, i) => (
+                  <motion.span
+                    key={i}
+                    variants={charVariant}
+                    className="font-headline font-black text-[clamp(2.4rem,8vw,7rem)] leading-[0.9] tracking-tighter text-neutral-400 inline-block"
+                  >
+                    {ch}
+                  </motion.span>
+                ))}
+              </span>
             ))}
           </div>
 
@@ -897,7 +907,7 @@ export default function Hero() {
           className="w-full max-w-3xl border border-white/[0.06] rounded-3xl overflow-hidden grid grid-cols-2 md:grid-cols-4"
         >
           {STATS.map((s, i) => (
-            <StatTile key={i} stat={s} started={statsVisible} />
+            <StatTile key={i} index={i} stat={s} started={statsVisible} />
           ))}
         </motion.div>
 

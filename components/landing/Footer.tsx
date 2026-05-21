@@ -16,10 +16,10 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         
         {/* ── INTEGRATED CTA + WORDMARK CONTAINER ── */}
-        <div className="relative rounded-[2.5rem] border border-[#27272a] bg-[#121212] overflow-hidden p-8 md:p-16">
+        <div className="relative rounded-[2.5rem] border border-[#27272a] bg-[#121212] overflow-hidden p-5 sm:p-8 md:p-16">
           
           {/* Header Part */}
-          <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-32">
+          <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-16 lg:mb-32">
             <div className="max-w-2xl">
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#B54B00] mb-6 block">
                 READY TO START?
@@ -39,14 +39,14 @@ export default function Footer() {
                 <>
                   <Link
                     href="/signup"
-                    className="group flex items-center justify-between gap-12 px-8 py-4 bg-[#B54B00] text-white rounded-full text-[13px] font-black uppercase tracking-widest hover:bg-[#9E4200] transition-all duration-300 shadow-xl shadow-[#B54B00]/20"
+                    className="group flex items-center justify-between gap-6 sm:gap-12 px-6 sm:px-8 py-4 bg-[#B54B00] text-white rounded-full text-[13px] font-black uppercase tracking-widest hover:bg-[#9E4200] transition-all duration-300 shadow-xl shadow-[#B54B00]/20"
                   >
                     <span>Start Building</span>
                     <HugeiconsIcon icon={ArrowRight01Icon} size={16} className="group-hover:translate-x-1.5 transition-transform duration-300" />
                   </Link>
                   <Link
                     href="/login"
-                    className="flex items-center justify-center px-8 py-4 bg-white text-black rounded-full text-[13px] font-black uppercase tracking-widest hover:bg-[#E2E2E2] transition-all duration-300"
+                    className="flex items-center justify-center px-6 sm:px-8 py-4 bg-white text-black rounded-full text-[13px] font-black uppercase tracking-widest hover:bg-[#E2E2E2] transition-all duration-300"
                   >
                     Explore Projects
                   </Link>
@@ -64,12 +64,12 @@ export default function Footer() {
           </div>
 
           {/* Divider Line */}
-          <div className="w-full h-px bg-white/5 mb-16" />
+          <div className="w-full h-px bg-white/5 mb-10 md:mb-16" />
 
           {/* ── HUGE WORDMARK ── */}
-          <div className="mb-20 select-none overflow-hidden text-center group cursor-pointer">
+          <div className="mb-12 md:mb-20 select-none overflow-hidden text-center group cursor-pointer">
             <h1 
-              className="text-[10vw] md:text-[9vw] font-headline font-black text-white uppercase tracking-tighter leading-none italic transition-all duration-500 group-hover:text-[#B54B00]"
+              className="text-[9vw] sm:text-[10vw] md:text-[9vw] font-headline font-black text-white uppercase tracking-tighter leading-none italic transition-all duration-500 group-hover:text-[#B54B00]"
               style={{
                 textRendering: "optimizeLegibility",
                 WebkitTextStroke: "1px rgba(255,255,255,0.05)",
@@ -102,7 +102,7 @@ export default function Footer() {
         </div>
 
         {/* Outer bottom links (Optional, keeping it clean) */}
-        <div className="flex justify-center gap-10 mt-12 mb-6">
+        <div className="flex flex-wrap justify-center gap-x-10 gap-y-4 mt-12 mb-6">
            {["Privacy", "Terms", "Changelog", "Careers"].map((link) => (
              <Link 
                key={link} 

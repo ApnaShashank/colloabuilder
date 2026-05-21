@@ -93,12 +93,12 @@ export default function Benefits() {
           initial={{ opacity: 0, y: 24 }}
           animate={statsVis ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-40"
+          className="mb-24 md:mb-40"
         >
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-700">Outcomes</span>
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div className="mt-8 md:mt-12 grid grid-cols-1 md:grid-cols-3 gap-0 border border-white/[0.06] rounded-2xl overflow-hidden">
             {GROWTH_STATS.map((s, i) => (
-              <div key={i} className="py-12 px-8 border-r border-white/[0.06] last:border-r-0 hover:bg-white/[0.02] transition-colors">
+              <div key={i} className="py-12 px-8 border-b md:border-b-0 md:border-r border-white/[0.06] last:border-b-0 md:last:border-r-0 hover:bg-white/[0.02] transition-colors">
                 <GrowthStat {...s} started={statsVis} />
               </div>
             ))}
@@ -111,7 +111,7 @@ export default function Benefits() {
           initial={{ opacity: 0, y: 40 }}
           animate={chartVis ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 md:mb-40"
         >
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#B54B00]/20 bg-[#B54B00]/5">
@@ -195,16 +195,16 @@ export default function Benefits() {
           initial={{ opacity: 0, y: 40 }}
           animate={tableVis ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="mb-40"
+          className="mb-24 md:mb-40"
         >
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-700">Comparison</span>
             <h2 className="mt-4 font-headline font-black text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter leading-[0.88]">
               Why Colloabuilder?
             </h2>
           </div>
 
-          <div className="border border-white/[0.06] rounded-2xl overflow-hidden">
+          <div className="border border-white/[0.06] rounded-2xl overflow-x-auto scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-white/[0.06]">
@@ -254,7 +254,7 @@ export default function Benefits() {
           transition={{ duration: 0.7 }}
           className="pt-8"
         >
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <span className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-700">Pricing</span>
             <h2 className="mt-4 font-headline font-black text-[clamp(2rem,6vw,5rem)] uppercase tracking-tighter leading-[0.88]">
               Simple plans.<br />

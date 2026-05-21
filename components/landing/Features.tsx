@@ -79,7 +79,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-24"
+          className="mb-16 md:mb-24"
         >
           <span className="text-[10px] font-black uppercase tracking-[0.4em] text-neutral-700">Platform Modules</span>
           <h2 className="mt-4 font-headline font-black text-[clamp(2.5rem,7vw,6rem)] leading-[0.88] tracking-tighter uppercase text-white">
@@ -91,7 +91,7 @@ export default function Features() {
         {/* ── NUMBERED FEATURE LIST ── */}
         <motion.div
           ref={listRef}
-          className="mb-40"
+          className="mb-24 md:mb-40"
         >
           {FEATURES.map((f, i) => (
             <motion.div
@@ -152,7 +152,7 @@ export default function Features() {
           initial={{ opacity: 0, y: 40 }}
           animate={arenaVis ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
-          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24 md:mb-40"
         >
           <div className="space-y-8">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#B54B00]/20 bg-[#B54B00]/5">
@@ -184,8 +184,8 @@ export default function Features() {
               </div>
               <span className="text-[10px] font-mono text-neutral-700 ml-2">fibonacci_opt.js</span>
             </div>
-            <div className="p-6 space-y-6">
-              <div className="font-mono text-[11px] leading-loose space-y-0.5">
+            <div className="p-4 sm:p-6 space-y-6">
+              <div className="font-mono text-[11px] leading-loose space-y-0.5 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
                 {CODE_LINES.map((l, i) => (
                   <div
                     key={i}
@@ -228,7 +228,7 @@ export default function Features() {
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center"
         >
           {/* Activity panel */}
-          <div className="bg-[#050505] rounded-2xl border border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.7)] p-8 space-y-6 order-2 lg:order-1">
+          <div className="bg-[#050505] rounded-2xl border border-white/[0.06] shadow-[0_20px_60px_rgba(0,0,0,0.7)] p-5 sm:p-8 space-y-6 order-2 lg:order-1">
             <p className="text-[9px] font-black text-neutral-700 uppercase tracking-[0.4em]">Live Activity Stream</p>
             <div className="space-y-5">
               {COMMITS.map((c, i) => (
