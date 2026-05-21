@@ -34,5 +34,5 @@ const RoadmapSchema = new Schema({
   updatedAt: { type: Date, default: Date.now }
 }, { timestamps: true });
 
-const Roadmap = mongoose.models.Roadmap || mongoose.model("Roadmap", RoadmapSchema);
+const Roadmap: mongoose.Model<any> = mongoose.models.Roadmap || mongoose.model("Roadmap", RoadmapSchema);
 export default Roadmap;

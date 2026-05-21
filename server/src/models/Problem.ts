@@ -22,5 +22,5 @@ const ProblemSchema = new Schema({
   }
 }, { timestamps: true });
 
-const Problem = mongoose.models.Problem || mongoose.model("Problem", ProblemSchema);
+const Problem: mongoose.Model<any> = mongoose.models.Problem || mongoose.model("Problem", ProblemSchema);
 export default Problem;

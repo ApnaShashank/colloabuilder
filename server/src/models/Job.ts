@@ -31,5 +31,5 @@ JobSchema.index({ title: "text", company: "text", description: "text", tags: "te
 JobSchema.index({ createdAt: -1 });
 JobSchema.index({ isActive: 1 });
 
-const Job = mongoose.models.Job || mongoose.model("Job", JobSchema);
+const Job: mongoose.Model<any> = mongoose.models.Job || mongoose.model("Job", JobSchema);
 export default Job;

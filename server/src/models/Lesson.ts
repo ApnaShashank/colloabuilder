@@ -18,5 +18,5 @@ const LessonSchema = new Schema({
 
 LessonSchema.index({ category: 1, topic: 1 }, { unique: true });
 
-const Lesson = mongoose.models.Lesson || mongoose.model("Lesson", LessonSchema);
+const Lesson: mongoose.Model<any> = mongoose.models.Lesson || mongoose.model("Lesson", LessonSchema);
 export default Lesson;

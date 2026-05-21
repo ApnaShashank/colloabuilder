@@ -19,5 +19,5 @@ const TeamSchema = new Schema({
   createdAt: { type: Date, default: Date.now },
 });
 
-const Team = mongoose.models.Team || mongoose.model("Team", TeamSchema);
+const Team: mongoose.Model<any> = mongoose.models.Team || mongoose.model("Team", TeamSchema);
 export default Team;
